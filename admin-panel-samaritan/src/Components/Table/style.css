@@ -1,0 +1,22 @@
+.custom-table th {
+  color: #594740 !important;
+}
+.custom-table .ant-pagination-item-active a {
+  color: #ffffff !important;
+}
+.custom-table .ant-pagination-item-active {
+  background-color: #e48068 !important;
+  border: none !important;
+}
+.custom-table .ant-select-selector {
+  outline: none !important;
+  border-color: #dddddd !important ;
+  box-shadow: none !important;
+}
+.custom-table .ant-select-focused {
+  outline: none !important;
+  border-color: #e48068 !important ;
+}
+.custom-table .ant-select :hover {
+  border-color: #e48068 !important ;
+}

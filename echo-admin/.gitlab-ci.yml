@@ -1,0 +1,43 @@
+image:
+  name: alpine:latest
+stages:
+  - build
+before_script:
+  - mkdir -p ~/.ssh
+  - "which ssh-agent || ( apk add openssh )"
+  - eval $(ssh-agent -s)
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+build:development:
+  stage: build
+  only:
+    - dev
+  script:
+    - echo "Build starting.."
+    - apk update
+    - apk add rsync
+    - rsync --version
+    - rsync -av -r ./* root@2.mtlstaging.com:echo/web
+    - ssh root@2.mtlstaging.com 'cd "echo/web" && DOCKER_NETWORK_ALIAS=echo-web DOCKER_ENV_FILE=/root/echo/env.d/.env.web docker compose --env-file /root/echo/env.d/.env.web -f ./docker-compose.dev.yml up --build -d'
+build:qa:
+  stage: build
+  only:
+    - qa
+  script:
+    - echo "Build starting.."
+    - apk update
+    - apk add rsync
+    - rsync --version
+    - rsync -av -r ./* system@216.48.180.111:echo/admin
+    - ssh system@216.48.180.111 'cd "echo/admin" && DOCKER_NETWORK_ALIAS=echo-web DOCKER_ENV_FILE=/home/system/echo/admin/.env docker compose --env-file /home/system/echo/admin/.env -f ./docker-compose.qa.yml up --build -d'
+build:uat:
+  stage: build
+  only:
+    - uat
+  script:
+    - echo "Build starting.."
+    - apk update
+    - apk add rsync
+    - rsync --version
+    - rsync -av -r ./* system@216.48.180.111:echo-uat/admin
+    - ssh system@216.48.180.111 'cd "echo-uat/admin" && DOCKER_NETWORK_ALIAS=echo-web-uat DOCKER_ENV_FILE=/home/system/echo-uat/admin/.env docker compose --env-file /home/system/echo-uat/admin/.env -f ./docker-compose.uat.yml up --build -d'

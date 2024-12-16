@@ -1,0 +1,31 @@
+.menu-submenu .ant-menu-submenu-title {
+  padding-left: 0px !important;
+  font-size: medium !important;
+  font-weight: 600 !important;
+  color: #66727e !important;
+  height: 24px !important;
+  width: max-content !important;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+.menu-submenu .ant-menu-title-content {
+  color: #66727e !important;
+  font-size: 16px !important;
+}
+
+.menu-submenu .ant-menu-item-selected {
+  color: #e48068 !important;
+  background-color: transparent !important;
+}
+
+.ant-menu-item {
+  background-color: transparent !important;
+}
+.ant-menu-submenu-title:hover {
+  background-color: transparent !important;
+}
+
+.ant-menu-light {
+  border-inline-end: white !important;
+  background-color: transparent !important;
+}

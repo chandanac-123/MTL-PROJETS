@@ -1,0 +1,26 @@
+.custom-event-tab-style .ant-tabs-nav-list {
+  font-weight: 600 !important;
+}
+
+.custom-event-tab-style .ant-tabs-ink-bar {
+  border-bottom: 2px solid #e48068 !important;
+  background: #e48068 !important;
+}
+
+.custom-event-tab-style .ant-tabs-nav-wrap {
+  justify-content: start !important;
+  width: auto !important;
+}
+
+.custom-event-tab-style .ant-tabs-tab-btn {
+  color: #594740 !important;
+}
+
+.custom-event-tab-style .ant-tabs-tab:hover {
+  color: #e48068 !important;
+}
+
+.custom-event-tab-style .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #e48068 !important;
+  font-weight: 600 !important;
+}

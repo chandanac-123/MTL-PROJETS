@@ -1,0 +1,27 @@
+name: rms-console
+services:
+  web-app:
+    container_name: 'rsm-console'
+    env_file:
+      - /root/rms/env.d/.env.rms.console
+    build:
+      dockerfile: ./Dockerfile
+      args:
+        REACT_APP_FIREBASE_API_KEY: ${REACT_APP_FIREBASE_API_KEY}
+        REACT_APP_API_URL: ${REACT_APP_API_URL}
+        REACT_APP_FIREBASE_AUTH_DOMAIN: ${REACT_APP_FIREBASE_AUTH_DOMAIN}
+        REACT_APP_FIREBASE_PROJECTID: ${REACT_APP_FIREBASE_PROJECTID}
+        REACT_APP_FIREBASE_STORAGE_BUCKET: ${REACT_APP_FIREBASE_STORAGE_BUCKET}
+        REACT_APP_FIREBASE_MESSAGING_SENDER_ID: ${REACT_APP_FIREBASE_MESSAGING_SENDER_ID}
+        REACT_APP_FIREBASE_APP_ID: ${REACT_APP_FIREBASE_APP_ID}
+        REACT_APP_FIREBASE_MEASURMENT_ID: ${REACT_APP_FIREBASE_MEASURMENT_ID}
+        REACT_APP_FIREBASE_VAPIED_KEY: ${REACT_APP_FIREBASE_VAPIED_KEY}
+    expose: 
+      - "${SERVICE_PORT}"
+    ports:
+     - "${HOST_PORT}:${SERVICE_PORT}"
+    networks:
+      - nginx
+networks:
+  nginx: 
+    external: true

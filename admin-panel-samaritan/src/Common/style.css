@@ -1,0 +1,29 @@
+.ant-image .ant-image-mask .ant-image-mask-info  {
+  display: none !important;
+}
+
+
+.image-container {
+  position: relative;
+  display: inline-block;  /* Ensures the container size is based on its content */
+}
+
+.image-with-text {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.text-inside-image {
+  position: absolute;
+  top: 80%;  /* Adjust this value to position the text vertically */
+  left: 50%;  /* Adjust this value to position the text horizontally */
+  transform: translate(-50%, -50%);
+  color: #415160;  /* Set the color of the text */
+  font-size: 10px;  /* Set the font size of the text */
+  font-weight: 400;  /* Set the font weight of the text */
+  text-align: center;  /* Center the text horizontally */
+  width: 50%;  /* Ensure the text takes the full width of the container */
+  border-radius: 20px;
+  background: white;
+}

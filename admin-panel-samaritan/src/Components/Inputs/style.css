@@ -1,0 +1,9 @@
+.texteditor .ql-toolbar.ql-snow {
+  border-radius: 5px 5px 0px 0px !important;
+  background: #fffdf5 !important;
+}
+.texteditor .ql-snow {
+  border-radius: 0px 0px 5px 5px !important;
+  background: #efede5 !important;
+}
+

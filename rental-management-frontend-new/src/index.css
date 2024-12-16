@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+.ant-timeline-item-label {
+  width: calc(10% - 12px) !important;
+  text-align: start;
+}
+
+.ant-timeline-item-head.ant-timeline-item-head-custom.ant-timeline-item-head-blue {
+  inset-inline-start: 11% !important;
+}
+
+.ant-timeline-item-content {
+  inset-inline-start: calc(11% - 4px) !important;
+  width: calc(88% - 12px) !important;
+}
+
+.ant-timeline-item-tail {
+  inset-inline-start: 11% !important;
+}

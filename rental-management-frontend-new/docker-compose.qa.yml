@@ -1,0 +1,19 @@
+name: rms-console-qa
+services:
+  web-app:
+    container_name: 'rsm-console-qa'
+    env_file:
+      - /root/rms/env.d/.env.rms.qa.console
+    build: 
+      dockerfile: ./Dockerfile
+      args:
+        REACT_APP_API_URL: ${REACT_APP_API_URL}
+    expose: 
+      - "${SERVICE_PORT}"
+    ports:
+     - "${HOST_PORT}:${SERVICE_PORT}"
+    networks:
+      - nginx
+networks:
+  nginx: 
+    external: true

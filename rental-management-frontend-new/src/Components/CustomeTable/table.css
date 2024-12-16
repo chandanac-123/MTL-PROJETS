@@ -1,0 +1,15 @@
+.custom-table th {
+  color: #999999 !important;
+}
+
+.custom-table-dashboard th {
+  color: #999999 !important;
+  font-weight: 600 !important;
+}
+
+.custom-table-dashboard  th:first-child {
+      padding-left: 0px !important;
+}
+.custom-table-dashboard  td:first-child {
+  padding-left: 0px !important;
+}

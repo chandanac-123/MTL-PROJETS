@@ -1,0 +1,4 @@
+.custom-tab-style .ant-tabs-nav-list {
+  width: 100% !important;
+  justify-content: space-between;
+}

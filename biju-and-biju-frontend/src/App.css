@@ -1,0 +1,77 @@
+* {
+  font-family: 'Montserrat' !important;
+}
+
+html {
+  /* min-width: 1520px; */
+  max-width: 1520px;
+  background-color: #F2F6F5;
+}
+
+body {
+  overflow-x: hidden;
+  padding: 0px !important;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo { 
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+div > .ant-picker-dropdown {
+  z-index: 999999;
+}
+
+body.swal2-shown > [aria-hidden="true"] {
+  transition: 0.1s filter;
+  filter: blur(0.5px);
+}
+
+.no-margin {
+  margin: 0px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+.text-end {
+  text-align: end;
+}

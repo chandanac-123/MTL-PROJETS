@@ -1,0 +1,30 @@
+image:
+  name: alpine:latest
+stages:
+  - build
+before_script:
+  - mkdir -p ~/.ssh
+  - 'which ssh-agent || ( apk add openssh )'
+  - eval $(ssh-agent -s)
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+build:development:
+  stage: build
+  only:
+    - dev
+  script:
+    - echo "Dev Build starting.."
+    - apk update
+    - apk add rsync
+    - rsync -av -r ./* root@contabo2.mtlstaging.com:samaritan/samaritan-console
+    - ssh root@contabo2.mtlstaging.com 'cd samaritan/samaritan-console && docker compose --env-file /root/samaritan/env.d/.env.dev.console -f docker-compose.dev.yml up --build -d'
+build:qa:
+  stage: build
+  only:
+    - qa
+  script:
+    - echo "QA Build starting.."
+    - apk update
+    - apk add rsync
+    - rsync -av -r ./* root@contabo2.mtlstaging.com:samaritan/samaritan-qa-console
+    - ssh root@contabo2.mtlstaging.com 'cd samaritan/samaritan-qa-console && docker compose --env-file /root/samaritan/env.d/.env.qa.console -f docker-compose.qa.yml up --build -d'

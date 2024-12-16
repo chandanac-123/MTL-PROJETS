@@ -1,0 +1,21 @@
+name: biju_and_biju
+services:
+  webapp:
+    container_name: 'biju_and_biju_web_app'
+    env_file:
+      - ./.env.dev
+    build: 
+      dockerfile: ./Dockerfile.dev
+      args:
+        REACT_APP_BASE_URL: ${REACT_APP_BASE_URL}
+    expose: 
+      - "${SERVICE_PORT}"
+    ports:
+     - "${HOST_PORT}:${SERVICE_PORT}"
+    networks:
+      nginx:
+        aliases:
+          - "biju_webapp"
+networks:
+  nginx:
+    external: true

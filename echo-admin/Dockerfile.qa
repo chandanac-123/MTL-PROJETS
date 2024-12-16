@@ -1,0 +1,33 @@
+# Use a builder stage to install dependencies
+FROM node:18-slim AS builder
+WORKDIR /app
+ENV GENERATE_SOURCEMAP=false
+ENV NODE_OPTIONS=--max-old-space-size=4096
+ARG NEXT_PUBLIC_BASE_URL
+ARG NEXT_PUBLIC_FIREBASE_API_KEY
+ARG NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+ARG NEXT_PUBLIC_FIREBASE_PROJECT_ID
+ARG NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+ARG NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+ARG NEXT_PUBLIC_FIREBASE_APP_ID
+ARG NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+ARG NEXT_PUBLIC_FIREBASE_VAPIED_KEY
+
+COPY package.json .
+COPY yarn.lock .
+RUN yarn install --frozen-lockfile --production
+
+# Copy app source and build it
+COPY . .
+RUN yarn build
+
+# Final stage
+FROM node:18-slim
+WORKDIR /app
+ENV GENERATE_SOURCEMAP=false
+ENV NODE_OPTIONS=--max-old-space-size=4096
+
+# Copy built app from builder stage
+COPY --from=builder /app .
+
+CMD ["npx", "next", "start"]

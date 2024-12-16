@@ -1,0 +1,19 @@
+name: sm-qa
+services:
+  console-sm-qa-admin:
+    container_name: 'console-sm-qa-admin'
+    env_file:
+      - /root/samaritan/env.d/.env.qa.console
+    build: 
+      dockerfile: ./Dockerfile
+      args:
+        VITE_BASE_URL: ${VITE_BASE_URL}
+    expose: 
+      - "${SERVICE_PORT}"
+    ports:
+     - "${HOST_PORT}:${SERVICE_PORT}"
+    networks:
+      - nginx
+networks:
+  nginx: 
+    external: true

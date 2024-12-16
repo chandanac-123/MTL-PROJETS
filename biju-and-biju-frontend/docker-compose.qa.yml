@@ -1,0 +1,21 @@
+name: biju_and_biju
+services:
+  webapp_qa:
+    container_name: 'biju_and_biju_web_app_qa'
+    env_file:
+      - ./.env.qa
+    build: 
+      dockerfile: ./Dockerfile.qa
+      args:
+        REACT_APP_BASE_URL: ${REACT_APP_BASE_URL}
+    expose: 
+      - "${SERVICE_PORT}"
+    ports:
+     - "${HOST_PORT}:${SERVICE_PORT}"
+    networks:
+      nginx:
+        aliases:
+          - "biju_webapp_qa"
+networks:
+  nginx:
+    external: true

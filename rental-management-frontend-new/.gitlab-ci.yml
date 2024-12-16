@@ -1,0 +1,30 @@
+image:
+  name: alpine:latest
+stages:
+  - build
+before_script:
+  - mkdir -p ~/.ssh
+  - 'which ssh-agent || ( apk add openssh )'
+  - eval $(ssh-agent -s)
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+build:development:
+  stage: build
+  only:
+    - dev
+  script:
+    - echo "Build starting.."
+    - apk update
+    - apk add rsync
+    - rsync -av -r ./* root@2.mtlstaging.com:rms/rms-console
+    - ssh root@2.mtlstaging.com 'cd rms/rms-console && docker compose --env-file /root/rms/env.d/.env.rms.console up --build -d'
+build:qa:
+  stage: build
+  only:
+    - qa
+  script:
+    - echo "Build starting.."
+    - apk update
+    - apk add rsync
+    - rsync -av -r ./* root@2.mtlstaging.com:rms/rms-console-qa
+    - ssh root@2.mtlstaging.com 'cd rms/rms-console-qa && docker compose --env-file /root/rms/env.d/.env.rms.qa.console -f docker-compose.qa.yml up --build -d'

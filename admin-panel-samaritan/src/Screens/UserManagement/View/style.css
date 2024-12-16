@@ -1,0 +1,11 @@
+.custom-tab-style .ant-tabs-ink-bar {
+  border-bottom: 2px solid #e48068 !important;
+}
+.custom-tab-style .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #e48068 !important;
+}
+.custom-tab-style .ant-tabs-tab-btn {
+  color: #66727e !important;
+  font-size: medium !important;
+  font-weight: 600 !important;
+}

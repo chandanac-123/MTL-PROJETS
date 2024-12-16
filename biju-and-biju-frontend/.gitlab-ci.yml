@@ -1,0 +1,58 @@
+stages:
+  - build
+
+before_script:
+  - mkdir -p ~/.ssh
+  - 'which ssh-agent || ( apk add openssh )'
+  - eval $(ssh-agent -s)
+  - ssh-add <(echo "$SSH_KEY_FIRST")
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+# build:dev:
+#   only:
+#     - dev
+#   stage: build
+#   script:
+#     - echo "Build starting.."
+#     - apk update
+#     - apk add rsync
+#     - rsync --version
+#     - rsync -av -r  ./* root@178.18.246.233:/root/biju/dev/webserver/biju-and-biju-frontend
+#     - ssh root@178.18.246.233 'cd /root/biju/dev && docker compose -p bijudev -f docker-compose.yml up --build -d --force-recreate'
+
+# build:qa:
+#   only:
+#     - qa
+#   stage: build
+#   script:
+#     - echo "Build starting.."
+#     - apk update
+#     - apk add rsync
+#     - rsync --version
+#     - rsync -av -r  ./* root@178.18.246.233:/root/biju/qa/webserver/biju-and-biju-frontend
+#     - ssh root@178.18.246.233 'cd /root/biju/qa && docker compose -p bijuqa -f docker-compose.yml up --build -d --force-recreate'
+
+build:dev-2:
+  only:
+    - dev
+  stage: build
+  script:
+    - echo "Build starting.."
+    - apk update
+    - apk add rsync
+    - rsync --version
+    - rsync -av -r  ./* root@2.mtlstaging.com:/root/biju_and_biju_dev/webapp
+    - ssh root@2.mtlstaging.com 'cd /root/biju_and_biju_dev/webapp && docker compose --env-file ./.env.dev -f docker-compose.dev.yml up --build -d'
+
+build:qa:
+  only:
+    - qa
+  stage: build
+  script:
+    - echo "Build starting.."
+    - apk update
+    - apk add rsync
+    - rsync --version
+    - rsync -av -r  ./* root@2.mtlstaging.com:/root/biju_and_biju_qa/webapp
+    - ssh root@2.mtlstaging.com 'cd /root/biju_and_biju_qa/webapp && docker compose --env-file ./.env.qa -f docker-compose.qa.yml up --build -d'
+    # Rebuild

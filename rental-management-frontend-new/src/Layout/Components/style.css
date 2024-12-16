@@ -1,0 +1,40 @@
+.menu-submenu .ant-menu-submenu-title:hover {
+  background-color: transparent !important;
+}
+
+.menu-submenu .ant-menu-submenu-title {
+  padding-left: 0 !important;
+  height: 20px !important;
+  line-height:20px !important;
+  color: #7E8299 !important;
+}
+
+.menu-submenu .ant-menu-item{
+    padding-left: 10px !important;
+  }
+  .menu-submenu .ant-menu-item:hover{
+   background-color: transparent !important;
+  }
+
+  .menu-submenu .ant-menu-title-content{
+    font-weight: 700 !important;
+    color: #7E8299 !important;
+    font-size: 16px !important;
+    margin-left:10px !important;
+
+  }
+  
+  .menu-submenu .ant-menu-item-only-child .ant-menu-title-content{
+    font-weight: 400 !important;
+  }
+
+  .ant-menu-item {
+    line-height: normal !important;
+    white-space: wrap !important;
+    background: none !important;
+    padding: 0px !important;
+  }
+
+  .ant-menu-light{
+    border-inline-end: white !important;
+  }

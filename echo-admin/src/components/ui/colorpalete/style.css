@@ -1,0 +1,10 @@
+.chrome-picker
+  div[style="width: 32px; text-align: right; position: relative;"] {
+  display: none !important;
+}
+.chrome-picker label[for="rc-editable-input-2"] {
+  display: none !important;
+}
+.chrome-picker {
+  width: auto !important;
+}
